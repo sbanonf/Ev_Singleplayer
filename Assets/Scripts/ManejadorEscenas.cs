@@ -7,7 +7,16 @@ public class ManejadorEscenas : MonoBehaviour
 {
     public void CambiarEscena(string nombreDeEscena)
     {
-        SceneManager.LoadScene(nombreDeEscena);
+        if (SceneManager.GetActiveScene().name.Equals("VS"))
+        {
+            ManagerRondas.instance.AdicionarRonda();
+            SceneManager.LoadScene(nombreDeEscena);
+        }
+        else {
+            SceneManager.LoadScene(nombreDeEscena);
+        }
+
+        
     }
 
 }

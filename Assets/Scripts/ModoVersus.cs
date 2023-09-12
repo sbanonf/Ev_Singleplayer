@@ -55,6 +55,7 @@ public class ModoVersus : MonoBehaviour
             jugador2.Balance -= apuestar;
             _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Ganaste",jugadorActual.Balance.ToString());
             ganador.gameObject.SetActive(true);
+            ManagerRondas.instance.AdicionarRonda();
         }
         else if (gananciaJugadorRival > gananciaActual)
         {
@@ -67,6 +68,8 @@ public class ModoVersus : MonoBehaviour
             jugador2.Ganancias += apuesta;
             _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Perdiste",jugadorActual.Balance.ToString());
             ganador.gameObject.SetActive(true);
+            ManagerRondas.instance.AdicionarRonda();
+
 
         }
         else
@@ -83,6 +86,7 @@ public class ModoVersus : MonoBehaviour
                 jugador2.Balance -= apuestar;
                 _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Ganaste", jugadorActual.Balance.ToString());
                 ganador.gameObject.SetActive(true);
+                ManagerRondas.instance.AdicionarRonda();
 
             }
             else
@@ -96,12 +100,14 @@ public class ModoVersus : MonoBehaviour
                 jugador2.Ganancias += apuesta;
                 _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Perdiste", jugadorActual.Balance.ToString());
                 ganador.gameObject.SetActive(true);
+                ManagerRondas.instance.AdicionarRonda();
 
             }
         }
 
         // Actualiza la interfaz de usuario o realiza otras acciones según el resultado.
     }
+
 
     private Jugador SeleccionarJugadorAleatorioDiferente(Jugador jugadorActual)
     {

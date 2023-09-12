@@ -12,6 +12,8 @@ public class Jugador
     public float Ganancias { get; set; }
     public List<Partida> Partidas { get; set; }
 
+    public bool tramposo { get; set; }
+
     private void Start()
     {
         GameManager._instance.JugadorActual = new Jugador("Nombre", "Nickname", 1);
@@ -25,5 +27,6 @@ public class Jugador
         Balance = 100; // Inicializa el saldo en 0
         Ganancias = 0; // Inicializa las ganancias en 0
         Partidas = new List<Partida>();
+        tramposo = false;
     }
 }
