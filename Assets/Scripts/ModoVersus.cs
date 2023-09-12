@@ -36,9 +36,9 @@ public class ModoVersus : MonoBehaviour
         // Calcula las ganancias reales en monedas.
         int gananciaActual = gananciaJugadorActual * 10;
         int gananciaJugadorRival = gananciaJugador2 * 10;
-        apuestar = apuesta * 10;
+        apuestar = apuestar * 10;
         
-        gananciaActual -= gananciaJugadorActual - apuesta;
+        gananciaActual = gananciaJugadorActual - apuesta;
         gananciaJugadorRival = gananciaJugadorRival - apuestar;
 
         // Compara las ganancias para determinar el resultado.
