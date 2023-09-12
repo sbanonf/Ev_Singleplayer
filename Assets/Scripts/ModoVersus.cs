@@ -5,7 +5,9 @@ using UnityEngine;
 public class ModoVersus : MonoBehaviour
 {
     private GestorJugadores gestorJugadores;
+    public SetearGanador _setearGanador;
     public Jugador jugador2;
+    public Canvas ganador;
     private void Start()
     {
         List<Jugador> gestorJugadores = GestorJugadores._instance.jugadores;
@@ -38,7 +40,7 @@ public class ModoVersus : MonoBehaviour
         int gananciaJugadorRival = gananciaJugador2 * 10;
         apuestar = apuestar * 10;
         
-        gananciaActual = gananciaJugadorActual - apuesta;
+        gananciaActual = gananciaActual - apuesta;
         gananciaJugadorRival = gananciaJugadorRival - apuestar;
 
         // Compara las ganancias para determinar el resultado.
@@ -51,6 +53,8 @@ public class ModoVersus : MonoBehaviour
             jugadorActual.Balance += apuesta;
             jugadorActual.Ganancias += apuesta;
             jugador2.Balance -= apuestar;
+            _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Ganaste",jugadorActual.Balance.ToString());
+            ganador.gameObject.SetActive(true);
         }
         else if (gananciaJugadorRival > gananciaActual)
         {
@@ -61,6 +65,9 @@ public class ModoVersus : MonoBehaviour
             jugadorActual.Balance -= apuesta;
             jugador2.Balance += apuesta;
             jugador2.Ganancias += apuesta;
+            _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Perdiste",jugadorActual.Balance.ToString());
+            ganador.gameObject.SetActive(true);
+
         }
         else
         {
@@ -74,6 +81,9 @@ public class ModoVersus : MonoBehaviour
                 jugadorActual.Balance += apuesta;
                 jugadorActual.Ganancias += apuesta;
                 jugador2.Balance -= apuestar;
+                _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Ganaste", jugadorActual.Balance.ToString());
+                ganador.gameObject.SetActive(true);
+
             }
             else
             {
@@ -84,6 +94,9 @@ public class ModoVersus : MonoBehaviour
                 jugadorActual.Balance -= apuesta;
                 jugador2.Balance += apuesta;
                 jugador2.Ganancias += apuesta;
+                _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Perdiste", jugadorActual.Balance.ToString());
+                ganador.gameObject.SetActive(true);
+
             }
         }
 
