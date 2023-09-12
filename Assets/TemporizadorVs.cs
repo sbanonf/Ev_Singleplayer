@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TemporizadorVS : MonoBehaviour
 {
@@ -40,7 +41,6 @@ public class TemporizadorVS : MonoBehaviour
 
     private void EjecutarAlgoAlTerminarTiempo()
     {
-        // Ejecuta la acción deseada cuando se agotan los 30 segundos
-        Debug.Log("Se han agotado los 30 segundos. Ejecutar algo aquí.");
+        SceneManager.LoadScene("BadEnding");
     }
 }

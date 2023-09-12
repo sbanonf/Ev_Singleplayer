@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VS.unity
     guid: 97677ac3c947cd64981eca9bfb87584b
+  - enabled: 1
+    path: Assets/Scenes/BadEnding.unity
+    guid: 7fb08f3075216cd4d9b0c05f2bde1f59
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

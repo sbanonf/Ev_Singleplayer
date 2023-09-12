@@ -42,40 +42,9 @@ public class ModoVersus : MonoBehaviour
         
         gananciaActual = gananciaActual - apuesta;
         gananciaJugadorRival = gananciaJugadorRival - apuestar;
-
-        // Compara las ganancias para determinar el resultado.
-        if (gananciaActual > gananciaJugadorRival)
-        {
-            Partida temp = new Partida(jugador2.Nombre, apuesta,apuestar, true, gananciaActual);
-            Partida temp2 = new Partida(GameManager._instance.JugadorActual.Nombre, apuestar, apuesta, false, gananciaJugadorRival);
-            jugadorActual.Partidas.Add(temp);
-            jugador2.Partidas.Add(temp2);
-            jugadorActual.Balance += apuesta;
-            jugadorActual.Ganancias += apuesta;
-            jugador2.Balance -= apuestar;
-            _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Ganaste",jugadorActual.Balance.ToString());
-            ganador.gameObject.SetActive(true);
-            ManagerRondas.instance.AdicionarRonda();
-        }
-        else if (gananciaJugadorRival > gananciaActual)
-        {
-            Partida temp = new Partida(jugador2.Nombre, apuesta, apuestar, false, gananciaActual);
-            Partida temp2 = new Partida(GameManager._instance.JugadorActual.Nombre, apuestar, apuesta, true, gananciaJugadorRival);
-            jugadorActual.Partidas.Add(temp);
-            jugador2.Partidas.Add(temp2);
-            jugadorActual.Balance -= apuesta;
-            jugador2.Balance += apuesta;
-            jugador2.Ganancias += apuesta;
-            _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Perdiste",jugadorActual.Balance.ToString());
-            ganador.gameObject.SetActive(true);
-            ManagerRondas.instance.AdicionarRonda();
-
-
-        }
-        else
-        {
-            bool ganadorAleatorio = Random.Range(0, 2) == 0; // 50% de probabilidad para cada jugador.
-            if (ganadorAleatorio)
+        if (!GameManager._instance.JugadorActual.tramposo) {
+            // Compara las ganancias para determinar el resultado.
+            if (gananciaActual > gananciaJugadorRival)
             {
                 Partida temp = new Partida(jugador2.Nombre, apuesta, apuestar, true, gananciaActual);
                 Partida temp2 = new Partida(GameManager._instance.JugadorActual.Nombre, apuestar, apuesta, false, gananciaJugadorRival);
@@ -86,10 +55,8 @@ public class ModoVersus : MonoBehaviour
                 jugador2.Balance -= apuestar;
                 _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Ganaste", jugadorActual.Balance.ToString());
                 ganador.gameObject.SetActive(true);
-                ManagerRondas.instance.AdicionarRonda();
-
             }
-            else
+            else if (gananciaJugadorRival > gananciaActual)
             {
                 Partida temp = new Partida(jugador2.Nombre, apuesta, apuestar, false, gananciaActual);
                 Partida temp2 = new Partida(GameManager._instance.JugadorActual.Nombre, apuestar, apuesta, true, gananciaJugadorRival);
@@ -100,14 +67,64 @@ public class ModoVersus : MonoBehaviour
                 jugador2.Ganancias += apuesta;
                 _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Perdiste", jugadorActual.Balance.ToString());
                 ganador.gameObject.SetActive(true);
-                ManagerRondas.instance.AdicionarRonda();
+
+
 
             }
+            else
+            {
+                bool ganadorAleatorio = Random.Range(0, 2) == 0; // 50% de probabilidad para cada jugador.
+                if (ganadorAleatorio)
+                {
+                    Partida temp = new Partida(jugador2.Nombre, apuesta, apuestar, true, gananciaActual);
+                    Partida temp2 = new Partida(GameManager._instance.JugadorActual.Nombre, apuestar, apuesta, false, gananciaJugadorRival);
+                    jugadorActual.Partidas.Add(temp);
+                    jugador2.Partidas.Add(temp2);
+                    jugadorActual.Balance += apuesta;
+                    jugadorActual.Ganancias += apuesta;
+                    jugador2.Balance -= apuestar;
+                    _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Ganaste", jugadorActual.Balance.ToString());
+                    ganador.gameObject.SetActive(true);
+                
+
+                }
+                else
+                {
+                    Partida temp = new Partida(jugador2.Nombre, apuesta, apuestar, false, gananciaActual);
+                    Partida temp2 = new Partida(GameManager._instance.JugadorActual.Nombre, apuestar, apuesta, true, gananciaJugadorRival);
+                    jugadorActual.Partidas.Add(temp);
+                    jugador2.Partidas.Add(temp2);
+                    jugadorActual.Balance -= apuesta;
+                    jugador2.Balance += apuesta;
+                    jugador2.Ganancias += apuesta;
+                    _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Perdiste", jugadorActual.Balance.ToString());
+                    ganador.gameObject.SetActive(true);
+ 
+                }
+            }
+
+        }
+        else
+        {
+            Partida temp = new Partida(jugador2.Nombre, apuesta, apuestar, true, gananciaActual);
+            Partida temp2 = new Partida(GameManager._instance.JugadorActual.Nombre, apuestar, apuesta, false, gananciaJugadorRival);
+            jugadorActual.Partidas.Add(temp);
+            jugador2.Partidas.Add(temp2);
+            jugadorActual.Balance += apuesta;
+            jugadorActual.Ganancias += apuesta;
+            jugador2.Balance -= apuestar;
+            _setearGanador.SetearTextos(gananciaActual.ToString(), apuesta.ToString(), apuestar.ToString(), jugador2.Nombre, "Ganaste", jugadorActual.Balance.ToString());
+            ganador.gameObject.SetActive(true);
+
+            GameManager._instance.JugadorActual.tramposo = true;
         }
 
         // Actualiza la interfaz de usuario o realiza otras acciones según el resultado.
     }
 
+    public void SetTramposo() {
+        GameManager._instance.JugadorActual.tramposo = true;
+    }
 
     private Jugador SeleccionarJugadorAleatorioDiferente(Jugador jugadorActual)
     {

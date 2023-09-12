@@ -12,7 +12,7 @@ public class ManejadorEscenas : MonoBehaviour
             ManagerRondas.instance.AdicionarRonda();
             SceneManager.LoadScene(nombreDeEscena);
         }
-        else {
+        else if(!SceneManager.GetActiveScene().name.Equals("VS")){
             SceneManager.LoadScene(nombreDeEscena);
         }
 

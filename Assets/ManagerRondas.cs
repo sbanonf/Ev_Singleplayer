@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-
+using UnityEngine.SceneManagement;
 public class ManagerRondas : MonoBehaviour
 {
     // Variable estática para acceder al Singleton
@@ -11,7 +11,7 @@ public class ManagerRondas : MonoBehaviour
 
     // Evento que se activa cuando se alcanzan las 10 rondas
     public event Action On10RondasReached;
-
+    public bool ejecutado=false;
     private void Awake()
     {
         // Configura el Singleton
@@ -25,23 +25,28 @@ public class ManagerRondas : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "VS")
+        {
+            if (rondas == 10 && !ejecutado)
+            {
+                // Activa el evento
+                On10RondasReached?.Invoke();
+            }
+            // Verifica si se llega a 20 rondas
+            else if (rondas == 20)
+            {
+                EjecutarOtraCosaPara20Rondas();
+            }
+        }
+    }
 
     // Función para adicionar una ronda
     public void AdicionarRonda()
     {
         rondas++;
 
-        // Verifica si se llega a 10 rondas
-        if (rondas == 10)
-        {
-            // Activa el evento
-            On10RondasReached?.Invoke();
-        }
-        // Verifica si se llega a 20 rondas
-        else if (rondas == 20)
-        {
-            EjecutarOtraCosaPara20Rondas();
-        }
     }
 
     private void EjecutarOtraCosaPara20Rondas()
