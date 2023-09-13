@@ -7,6 +7,7 @@ public class ManejadorEscenas : MonoBehaviour
 {
     public void CambiarEscena(string nombreDeEscena)
     {
+        AudioManager.instance.Play("press");
         if (SceneManager.GetActiveScene().name.Equals("VS"))
         {
             ManagerRondas.instance.AdicionarRonda();

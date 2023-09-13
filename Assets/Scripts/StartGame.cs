@@ -43,6 +43,7 @@ public class StartGame : MonoBehaviour
         GestorJugadores._instance.jugadores.Add(Perez);
         GestorJugadores._instance.jugadores.Add(Sam);
         GestorJugadores._instance.jugadores.Add(John);
+        AudioManager.instance.Play("press");
         SceneManager.LoadScene("MainGame");
 
     }

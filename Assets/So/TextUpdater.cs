@@ -18,6 +18,7 @@ public class TextUpdater : MonoBehaviour
         // Verifica si se ha presionado cualquier tecla.
         if (Input.GetMouseButtonDown(1))
         {
+            AudioManager.instance.Play("press");
             NextText();
         }
     }

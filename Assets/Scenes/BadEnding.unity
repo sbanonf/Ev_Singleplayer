@@ -827,7 +827,7 @@ MonoBehaviour:
   textoMesh: {fileID: 1649017074}
   textoCompleto: 'AGENTE 001 DESAPARECIDO EN LA GREED ROOM... MOTIVO: SE ACABO EL
     TIEMPO Y NO TOMO UNA DECISION.'
-  velocidadEscritura: 0.1
+  velocidadEscritura: 0.05
 --- !u!4 &850325302
 Transform:
   m_ObjectHideFlags: 0

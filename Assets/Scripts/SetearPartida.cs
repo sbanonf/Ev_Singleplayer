@@ -11,6 +11,7 @@ public class SetearPartida : MonoBehaviour
     public TextMeshProUGUI apuestariText;
     public TextMeshProUGUI victoriaText;
     public TextMeshProUGUI gananciaText;
+    public TextMeshProUGUI VictLetra;
 
     // Otros campos de TextMeshPro que desees configurar
 
@@ -22,6 +23,7 @@ public class SetearPartida : MonoBehaviour
         apuestayoText.text = partida.ApuestaYo.ToString(); // Puedes formatearlos según tus necesidades
         apuestariText.text = partida.ApuestaRival.ToString();
         victoriaText.text = (partida.Victoria ? "Victoria" : "Derrota");
+        VictLetra.text = (partida.Victoria ? "V" : "L");
         gananciaText.text =  partida.Ganancia.ToString();
     }
 }
